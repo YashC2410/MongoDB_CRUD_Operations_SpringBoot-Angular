@@ -1,0 +1,106 @@
+#success,#error{
+    text-align: center;
+    width: 700px;
+    font-weight: bold;
+    margin-left: 550px;
+    padding:10px;
+}
+
+#buttons{
+    margin-left: 650px;
+}
+
+#search, #clear{
+    padding: 8px;
+    width: 180px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    margin-left: 20px;
+}
+
+#searchInputs{
+    margin-left: 280px;
+    font-weight: bold;
+    font-size: 16px;
+}
+#modalHeader{
+    background-color: #5189F5;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+#closeModal{
+    font-weight: bold;
+    font-weight: bold;
+    background-color: #F7505A;
+    color: white;
+}
+
+#save,#close,#update,#delete{
+    margin-top: 20px;
+    font-weight: bold;
+    color:white;
+    width: 150px;
+    padding: 5px;
+    margin-left: 20px;
+    font-size: 16px;
+
+}
+#deleteBody{
+    text-align: center;
+    font-size: 15px;
+}
+
+#newButton{
+    width: 400px;
+    font-weight: bold;
+    margin-left: 700px;
+    padding: 8px;
+    color: white;
+    margin-top: 20px;
+    font-size: 16px;
+}
+table{
+    padding: 10px;
+    width: 70%;
+    margin-left: 280px;
+    margin-top: 50px;
+    font-size: 16px;
+}
+th, td {
+    text-align: left;
+    padding: 8px;
+  }
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+#tableHead{
+    color: white;
+    font-weight: bold;
+    background-color: #3C7DC3;
+}
+
+#header{
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 28px;
+    margin-bottom: 60px;
+    background-color: #6D52E0;
+    color: white;
+    padding: 10px;
+}
+
+#footer{
+    margin-top: 150px;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 60px;
+    background-color: #17202A ;
+    color: white;
+    padding: 10px;
+    margin-bottom: 0;
+}

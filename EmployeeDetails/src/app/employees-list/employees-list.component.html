@@ -1,0 +1,162 @@
+
+<div id="header">Welcome To Employee Portal</div>
+
+<div id="searchInputs">
+<label for="firstName">First Name:</label>&nbsp;
+<input type="text" name="firstName" [(ngModel)]="firstName" placeholder="Enter First Name">
+&nbsp;&nbsp;&nbsp;
+<label for="lasttNam">Last Name:</label>&nbsp;
+<input type="text" name="lasttName" [(ngModel)]="lastName" placeholder="Enter First Name">
+&nbsp;&nbsp;&nbsp;
+<label for="emailId">Email ID:</label>&nbsp;
+<input type="text" name="emailId" [(ngModel)]="emailId" placeholder="Enter EMail ID">
+&nbsp;&nbsp;&nbsp;
+<label for="age">Age:</label>&nbsp;
+<input type="text" name="age" [(ngModel)]="ageRange" placeholder="Enter Age">
+</div>
+<br/>
+<div id="buttons">
+  <button class="btn btn-sm btn-primary" id="search" (click)="filterEmployeeDetails()">
+    <i class="fa fa-search" ></i>&nbsp;&nbsp;Search</button>
+  <button class="btn btn-sm btn-danger" id="clear" (click)="clearEmployeeDetails()">
+    <i class="fa fa-undo" ></i>&nbsp;&nbsp;Clear</button>
+</div>
+<br/>
+  <div class="alert alert-success" id="success" *ngIf="isSuccess"><img src="assets/images/t4.png" width="30" height="30">&nbsp;&nbsp;&nbsp;{{employeeMessage}}
+  </div>
+  <div class="alert alert-danger" id="error" *ngIf="isError"><img src="assets/images/cr2.png" width="15" height="15">&nbsp;&nbsp;&nbsp;{{employeeMessage}}
+  </div>
+<table>
+    <tr id="tableHead">
+       <td>ID</td>
+        <td>FirstName</td>
+        <td>LastName</td>
+        <td>EmailID</td>
+        <td>Age</td>
+        <td>Edit</td>
+        <td>Delete</td>
+    </tr>
+    <tr *ngFor=" let employee of employeeList | paginate: { itemsPerPage: count, currentPage: p }">
+       <td>{{employee.id}}</td>
+        <td>{{employee.firstName}}</td>
+        <td>{{employee.lastName}}</td>
+        <td>{{employee.emailId}}</td>
+        <td>{{employee.age}}</td>
+        <td> <button class="btn btn-sm btn-warning" style="width: 70px;" (click)="openUpdateEmployee(contentEdit,employee)">
+            <i class="fa fa-edit" ></i></button></td>
+        <td>
+            <button class="btn btn-sm btn-danger" style="width: 70px;" (click)="openDeleteEmployee(contentDelete,employee.id,employee.firstName)">
+            <i class="fa fa-remove" ></i></button>
+        </td>
+    </tr>
+</table>
+<div class="text-center" style="margin-top: 20px;">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+<div >
+    <button type="button"  id="newButton" class="btn btn-sm btn-success"  (click)="openSaveEmployee(content)">
+      <i class="fa fa-plus"></i>&nbsp;&nbsp;Add Employee</button>
+</div>
+
+<ng-template #content let-modal>
+    <div class="modal-header" id="modalHeader">
+      <h4 class="modal-title"  id="modal-basic-title">Add New Employee</h4>
+      <button type="button" class="close" id="closeModal" aria-label="Close" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+        <label for="firstname">ID</label>
+          <div class="input-group">
+            <input id="firstname" name="id" class="form-control" [(ngModel)]="employee.id">
+          </div>
+          <label for="firstname">First Name:</label>
+          <div class="input-group">
+            <input id="firstname" name="firstName" class="form-control" [(ngModel)]="employee.firstName">
+          </div>
+          <label for="firstname">Last Name:</label>
+          <div class="input-group">
+            <input id="firstname" name="lastName" class="form-control" [(ngModel)]="employee.lastName">
+          </div>
+          <label for="firstname">Email ID:</label>
+          <div class="input-group">
+            <input id="firstname" name="emailId" class="form-control" [(ngModel)]="employee.emailId">
+          </div>
+          <label for="firstname">Age:</label>
+          <div class="input-group">
+            <input id="firstname" name="age" class="form-control" [(ngModel)]="employee.age">
+          </div>
+        </div>
+        <button type="button" id="save" class="btn btn-sm btn-success" (click)="saveEmployee()">
+          <i class="fa fa-save" ></i>&nbsp;&nbsp;Save</button>
+        <button type="button" id="close" class="btn btn-sm btn-danger" (click)="closeModal()">
+          <i class="fa fa-close" ></i>&nbsp;&nbsp;Close</button>
+      </form>
+    </div>
+    <div class="modal-footer">
+     
+    </div>
+  </ng-template>
+
+  <ng-template #contentEdit let-modal>
+    <div class="modal-header" id="modalHeader">
+      <h4 class="modal-title" id="modal-basic-title">Update Employee</h4>
+      <button type="button" class="close" aria-label="Close" id="closeModal" (click)="closeModal()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+        <label for="firstname">ID</label>
+          <div class="input-group">
+            <input id="firstname" name="id" class="form-control" [(ngModel)]="employee.id">
+          </div>
+          <label for="firstname">First Name:</label>
+          <div class="input-group">
+            <input id="firstname" name="firstName" class="form-control" [(ngModel)]="employee.firstName">
+          </div>
+          <label for="firstname">Last Name:</label>
+          <div class="input-group">
+            <input id="firstname" name="lastName" class="form-control" [(ngModel)]="employee.lastName">
+          </div>
+          <label for="firstname">Email ID:</label>
+          <div class="input-group">
+            <input id="firstname" name="emaiId" class="form-control" [(ngModel)]="employee.emailId">
+          </div>
+          <label for="firstname">Age:</label>
+          <div class="input-group">
+            <input id="firstname" name="age" class="form-control" [(ngModel)]="employee.age">
+          </div>
+        </div>
+        <button type="button" class="btn btn-sm btn-success"  id="update" (click)="updateEmployee()">
+          <i class="fa fa-refresh" ></i>&nbsp;&nbsp;Update</button>
+        <button type="button" class="btn btn-sm btn-danger" id="close" (click)="closeModal()">
+          <i class="fa fa-close" ></i>&nbsp;&nbsp;Close</button>
+      </form>
+    </div>
+    <div class="modal-footer">
+     
+    </div>
+  </ng-template>
+
+  <ng-template #contentDelete let-modal style="width: 500px;">
+    <div class="modal-header"  id="modalHeader">
+        <h4 class="modal-title">Employee Delete Confirmation</h4>
+        <button type="button" class="close"  id="closeModal" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <div class="modal-body" id="deleteBody">
+      <h5>{{deleteMessage}}</h5>
+      <button type="button" class="btn btn-sm btn-success" id="delete" (click)="deleteEmployee()">
+        <i class="fa fa-check" ></i>&nbsp;&nbsp;Yes</button>
+    <button type="button" class="btn btn-sm btn-danger" id="close" (click)="modal.close('Close click')">
+      <i class="fa fa-close" ></i>&nbsp;&nbsp;No</button>
+    </div>
+   
+  </ng-template>
+
+  <div id="footer">Copyright Yash Chowdhary @NeosoftTechnologies Email : yash@gmail.com Contact: 912345678</div>
